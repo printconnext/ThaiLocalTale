@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ไทยโลคอลเทล (Thai Local Tale) - เรื่องเล่าจากคนท้องถิ่น วัฒนธรรม สถานที่ท่องเที่ยว อาหาร และวิถีชีวิตไทยที่คุณอาจไม่เคยรู้">
+    <title>Thai Local Tale | เรื่องเล่าจากท้องถิ่นไทยที่คุณอาจไม่เคยรู้</title>
+    
+    <!-- Google Fonts: Playfair Display (Headers), Caveat (Brush Script), Outfit (UI & Body), Oswald (Subheaders) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Outfit:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons for Socials and UI elements -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="main-header" id="mainHeader">
+        <div class="header-container">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-logo" id="logoLink">
+                <img src="assets/logo.jpg" alt="Thai Local Tale Logo" class="logo-img">
+            </a>
+            
+            <!-- Desktop Navigation Menu -->
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#" class="nav-link active">HOME</a></li>
+                    <li><a href="#featured" class="nav-link">STORIES</a></li>
+                    <li><a href="#categories" class="nav-link">PLACES</a></li>
+                    <li><a href="#about" class="nav-link">FOOD</a></li>
+                    <li><a href="#about" class="nav-link">CULTURE</a></li>
+                    <li><a href="#about" class="nav-link">ABOUT US</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Right-Side Utilities (Socials & Search) -->
+            <div class="header-utilities">
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook" id="fbLink"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram" id="igLink"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com" target="_blank" aria-label="TikTok" id="ttLink"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://youtube.com" target="_blank" aria-label="YouTube" id="ytLink"><i class="fab fa-youtube"></i></a>
+                </div>
+                <button class="search-btn" id="searchToggle" aria-label="Search">
+                    <i class="fa fa-search"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Mobile Menu">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <button class="close-search-btn" id="closeSearch" aria-label="Close Search">&times;</button>
+        <div class="search-box">
+            <input type="text" placeholder="ค้นหาเรื่องราวท่องเที่ยว คัลเจอร์..." id="searchInput">
+            <button class="search-submit-btn" id="searchSubmit" aria-label="Submit Search"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <button class="close-menu-btn" id="closeMobileMenu" aria-label="Close Menu">&times;</button>
+        <div class="mobile-nav-links">
+            <a href="#" class="mobile-nav-link active">HOME</a>
+            <a href="#featured" class="mobile-nav-link">STORIES</a>
+            <a href="#categories" class="mobile-nav-link">PLACES</a>
+            <a href="#about" class="mobile-nav-link">FOOD</a>
+            <a href="#about" class="mobile-nav-link">CULTURE</a>
+            <a href="#about" class="mobile-nav-link">ABOUT US</a>
+            <div class="mobile-socials">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        
+        <!-- Hero Banner Section -->
+        <section class="hero-section" id="heroSection">
+            <div class="hero-bg-overlay"></div>
+            <div class="hero-content-container">
+                <h1 class="hero-title" id="heroTitle">
+                    Your Story,<br>
+                    <span class="hero-title-accent">Our Thailand</span>
+                </h1>
+                <p class="hero-subtitle" id="heroSubtitle">
+                    Discover the beauty of Thailand through local stories, culture, people, and places you may never know.
+                </p>
+                <a href="#featured" class="btn btn-primary" id="exploreStoriesBtn">
+                    EXPLORE STORIES <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Featured Stories Section -->
+        <section class="featured-section" id="featured">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">FEATURED STORIES</h2>
+                    <a href="#" class="view-all-link" id="viewAllStories">VIEW ALL <i class="fa fa-arrow-right"></i></a>
+                </div>
+                
+                <!-- Stories Carousel/Grid -->
+                <div class="stories-slider-container">
+                    <div class="stories-grid" id="storiesGrid">
+                        
+                        <!-- Card 1 -->
+                        <article class="story-card" id="storyCard1">
+                            <div class="story-img-container">
+                                <img src="https://images.unsplash.com/photo-1552596880-cd2b2a1a4570?q=80&w=800" alt="ตลาดน้ำในประเทศไทย" class="story-img">
+                                <span class="story-category-tag tag-culture">CULTURE</span>
+                            </div>
+                            <div class="story-content">
+                                <h3 class="story-card-title"><a href="#">Floating Markets of Thailand</a></h3>
+                                <p class="story-card-desc">A timeless way of life on the water, where tradition still floats every day.</p>
+                                <div class="story-meta">
+                                    <span><i class="far fa-calendar"></i> May 12, 2024</span>
+                                    <span><i class="far fa-clock"></i> 6 min read</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Card 2 -->
+                        <article class="story-card" id="storyCard2">
+                            <div class="story-img-container">
+                                <img src="https://images.unsplash.com/photo-1580983218765-f663becf485a?q=80&w=800" alt="อยุธยา เมืองมรดกโลก" class="story-img">
+                                <span class="story-category-tag tag-places">PLACES</span>
+                            </div>
+                            <div class="story-content">
+                                <h3 class="story-card-title"><a href="#">Ayutthaya: The Ancient Glory</a></h3>
+                                <p class="story-card-desc">Step back in time and explore the majestic legacy of Thailand's old capital.</p>
+                                <div class="story-meta">
+                                    <span><i class="far fa-calendar"></i> Apr 28, 2024</span>
+                                    <span><i class="far fa-clock"></i> 5 min read</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Card 3 -->
+                        <article class="story-card" id="storyCard3">
+                            <div class="story-img-container">
+                                <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?q=80&w=800" alt="ขนมหวานไทย" class="story-img">
+                                <span class="story-category-tag tag-food">FOOD</span>
+                            </div>
+                            <div class="story-content">
+                                <h3 class="story-card-title"><a href="#">The Charm of Thai Dessert</a></h3>
+                                <p class="story-card-desc">Sweet, delicate, and full of story. Thai desserts are more than just food.</p>
+                                <div class="story-meta">
+                                    <span><i class="far fa-calendar"></i> Apr 15, 2024</span>
+                                    <span><i class="far fa-clock"></i> 4 min read</span>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                    
+                    <!-- Slider Navigation Buttons -->
+                    <button class="slider-nav-btn next-btn" id="storySliderNext" aria-label="Next stories">
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explore by Category Section -->
+        <section class="categories-section" id="categories">
+            <div class="section-container">
+                <div class="category-divider">
+                    <span class="divider-line"></span>
+                    <h2 class="category-section-title">EXPLORE BY CATEGORY</h2>
+                    <span class="divider-line"></span>
+                </div>
+                
+                <div class="categories-grid" id="categoriesGrid">
+                    <!-- Places Category -->
+                    <a href="#" class="category-item" id="catPlaces">
+                        <div class="category-circle">
+                            <svg viewBox="0 0 64 64" class="category-svg" fill="none" stroke="currentColor" stroke-width="2">
+                                <!-- Temple Pagoda Silhouette -->
+                                <path d="M32 4 L24 22 L40 22 Z M24 22 L16 36 L48 36 L40 22 Z M16 36 L6 52 L58 52 L48 36 Z M32 4 L32 10" />
+                                <path d="M12 52 L12 60 L52 60 L52 52" />
+                            </svg>
+                        </div>
+                        <span class="category-label">PLACES</span>
+                    </a>
+
+                    <!-- Culture Category -->
+                    <a href="#" class="category-item" id="catCulture">
+                        <div class="category-circle">
+                            <svg viewBox="0 0 64 64" class="category-svg" fill="none" stroke="currentColor" stroke-width="2">
+                                <!-- Thai Pavilion Gable -->
+                                <path d="M8 36 L32 12 L56 36" />
+                                <path d="M18 26 L18 52 L46 52 L46 26" />
+                                <path d="M32 12 L32 4" />
+                                <path d="M26 38 L32 30 L38 38 Z" stroke-width="1.5" />
+                                <path d="M6 36 C9 36, 12 33, 12 30" />
+                                <path d="M58 36 C55 36, 52 33, 52 30" />
+                            </svg>
+                        </div>
+                        <span class="category-label">CULTURE</span>
+                    </a>
+
+                    <!-- Food Category -->
+                    <a href="#" class="category-item" id="catFood">
+                        <div class="category-circle">
+                            <svg viewBox="0 0 64 64" class="category-svg" fill="none" stroke="currentColor" stroke-width="2">
+                                <!-- Bowl of noodles/soup with chopsticks -->
+                                <path d="M10 26 C10 44, 54 44, 54 26 Z" />
+                                <path d="M32 44 L32 54" />
+                                <path d="M22 54 L42 54" />
+                                <path d="M18 10 L50 20" />
+                                <path d="M22 8 L54 18" />
+                                <path d="M14 26 C22 20, 42 20, 50 26" />
+                            </svg>
+                        </div>
+                        <span class="category-label">FOOD</span>
+                    </a>
+
+                    <!-- People Category -->
+                    <a href="#" class="category-item" id="catPeople">
+                        <div class="category-circle">
+                            <svg viewBox="0 0 64 64" class="category-svg" fill="none" stroke="currentColor" stroke-width="2">
+                                <!-- Person wearing a Thai farmer hat -->
+                                <path d="M32 10 C20 10, 8 20, 8 26 L56 26 C56 20, 44 10, 32 10 Z" />
+                                <circle cx="32" cy="38" r="8" />
+                                <path d="M18 58 C18 48, 46 48, 46 58" />
+                                <path d="M28 32 L32 26 L36 32" stroke-width="1.5" />
+                            </svg>
+                        </div>
+                        <span class="category-label">PEOPLE</span>
+                    </a>
+
+                    <!-- Nature Category -->
+                    <a href="#" class="category-item" id="catNature">
+                        <div class="category-circle">
+                            <svg viewBox="0 0 64 64" class="category-svg" fill="none" stroke="currentColor" stroke-width="2">
+                                <!-- Coconut trees and islands -->
+                                <path d="M10 52 C20 52, 24 44, 28 32 C30 26, 32 18, 30 10" />
+                                <path d="M30 10 C34 6, 42 8, 46 12 M30 10 C24 8, 20 12, 18 18 M30 10 C34 16, 30 24, 28 28" stroke-width="1.5" />
+                                <path d="M48 52 C52 52, 54 48, 56 42 C57 38, 58 34, 56 30" />
+                                <path d="M56 30 C58 28, 62 29, 64 31 M56 30 C53 29, 50 31, 49 34" stroke-width="1.5" />
+                                <path d="M4 52 L60 52" />
+                                <path d="M38 52 C44 48, 48 48, 54 52" />
+                            </svg>
+                        </div>
+                        <span class="category-label">NATURE</span>
+                    </a>
+
+                    <!-- Lifestyle Category -->
+                    <a href="#" class="category-item" id="catLifestyle">
+                        <div class="category-circle">
+                            <svg viewBox="0 0 64 64" class="category-svg" fill="none" stroke="currentColor" stroke-width="2">
+                                <!-- Elephant silhouette -->
+                                <path d="M14 44 L14 56 M24 46 L24 56 M44 46 L44 56 M52 42 L52 56" stroke-width="3" stroke-linecap="round" />
+                                <path d="M8 44 C8 32, 16 26, 26 24 C36 22, 48 24, 50 34 C52 38, 48 44, 42 46 C34 48, 22 46, 14 44 Z" fill="none" />
+                                <path d="M50 34 C54 36, 58 38, 58 42 C58 46, 56 48, 54 50" />
+                                <circle cx="44" cy="30" r="1.5" fill="currentColor" />
+                                <path d="M8 40 C6 38, 4 30, 6 26" />
+                            </svg>
+                        </div>
+                        <span class="category-label">LIFESTYLE</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About ThaiLocalTale Section -->
+        <section class="about-section" id="about">
+            <div class="about-grid">
+                
+                <!-- Left: Content Column -->
+                <div class="about-content-col">
+                    <h2 class="about-title">ABOUT THAILOCALTALE</h2>
+                    <p class="about-desc">
+                        We are storytellers who want to share the real Thailand — through the eyes of locals. From hidden places to untold stories, we believe every journey begins with a tale.
+                    </p>
+                    <a href="#" class="btn btn-outline" id="readStoryBtn">
+                        READ OUR STORY <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Right: Polaroid & Collage Column -->
+                <div class="about-visual-col">
+                    <!-- Background Image of Boat -->
+                    <div class="visual-bg-container">
+                        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=800" alt="เรือหางยาวในประเทศไทย" class="visual-bg-img">
+                    </div>
+                    
+                    <!-- Pinned Polaroid Photo -->
+                    <div class="polaroid-card" id="aboutPolaroid">
+                        <div class="polaroid-clip"><i class="fa fa-paperclip"></i></div>
+                        <div class="polaroid-img-container">
+                            <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?q=80&w=600" alt="วัดอรุณและรถตุ๊กตุ๊ก" class="polaroid-img">
+                        </div>
+                        <div class="polaroid-caption">
+                            <span>THAILAND</span>
+                            <div class="polaroid-stamp">
+                                <span class="stamp-outer">
+                                    <span class="stamp-inner">LOCAL STORIES</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Latest Videos Section -->
+        <section class="videos-section" id="videos">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">LATEST VIDEOS</h2>
+                    <a href="https://youtube.com" target="_blank" class="view-all-link yt-link" id="viewAllYoutube">
+                        <i class="fab fa-youtube"></i> VIEW ALL ON YOUTUBE <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Videos Grid / Scroll -->
+                <div class="videos-slider-container">
+                    <div class="videos-grid" id="videosGrid">
+                        
+                        <!-- Video Card 1 -->
+                        <div class="video-card" id="videoCard1">
+                            <a href="https://youtube.com" target="_blank" class="video-thumb-container">
+                                <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=800" alt="เทศกาลลอยกระทง 2024" class="video-thumb">
+                                <span class="video-duration">8:45</span>
+                                <div class="video-play-overlay"><i class="fa fa-play"></i></div>
+                            </a>
+                            <div class="video-info">
+                                <h3 class="video-card-title"><a href="https://youtube.com" target="_blank">Loy Krathong Festival 2024</a></h3>
+                                <p class="video-card-desc">A night of lights and gratitude.</p>
+                            </div>
+                        </div>
+
+                        <!-- Video Card 2 -->
+                        <div class="video-card" id="videoCard2">
+                            <a href="https://youtube.com" target="_blank" class="video-thumb-container">
+                                <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=800" alt="เที่ยววัดเมืองเก่าเชียงใหม่" class="video-thumb">
+                                <span class="video-duration">10:12</span>
+                                <div class="video-play-overlay"><i class="fa fa-play"></i></div>
+                            </a>
+                            <div class="video-info">
+                                <h3 class="video-card-title"><a href="https://youtube.com" target="_blank">Chiang Mai Old City Walk</a></h3>
+                                <p class="video-card-desc">Hidden temples and local cafés.</p>
+                            </div>
+                        </div>
+
+                        <!-- Video Card 3 -->
+                        <div class="video-card" id="videoCard3">
+                            <a href="https://youtube.com" target="_blank" class="video-thumb-container">
+                                <img src="https://images.unsplash.com/photo-1589392682746-1596084e4f29?q=80&w=800" alt="เกาะหลีเป๊ะ สวรรค์แดนใต้" class="video-thumb">
+                                <span class="video-duration">9:31</span>
+                                <div class="video-play-overlay"><i class="fa fa-play"></i></div>
+                            </a>
+                            <div class="video-info">
+                                <h3 class="video-card-title"><a href="https://youtube.com" target="_blank">Koh Lipe – The Hidden Paradise</a></h3>
+                                <p class="video-card-desc">White sand, clear sea, and slow life.</p>
+                            </div>
+                        </div>
+
+                        <!-- Video Card 4 -->
+                        <div class="video-card" id="videoCard4">
+                            <a href="https://youtube.com" target="_blank" class="video-thumb-container">
+                                <img src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?q=80&w=800" alt="ปางช้างธรรมชาติ" class="video-thumb">
+                                <span class="video-duration">11:08</span>
+                                <div class="video-play-overlay"><i class="fa fa-play"></i></div>
+                            </a>
+                            <div class="video-info">
+                                <h3 class="video-card-title"><a href="https://youtube.com" target="_blank">Living with Elephants</a></h3>
+                                <p class="video-card-desc">A bond beyond words in Thailand.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <button class="slider-nav-btn next-btn" id="videoSliderNext" aria-label="Next videos">
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            
+            <!-- Brand Col -->
+            <div class="footer-col brand-col">
+                <a href="#" class="footer-logo">
+                    <img src="assets/logo.jpg" alt="Thai Local Tale Footer Logo" class="footer-logo-img">
+                </a>
+                <div class="footer-brand-info">
+                    <h3>ThaiLocalTale</h3>
+                    <p>Your story, Our Thailand.</p>
+                </div>
+                <div class="footer-socials">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <!-- Quick Links Col -->
+            <div class="footer-col">
+                <h4>QUICK LINKS</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#featured">Stories</a></li>
+                    <li><a href="#categories">Places</a></li>
+                    <li><a href="#about">Culture</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
+            
+            <!-- Categories Col -->
+            <div class="footer-col">
+                <h4>CATEGORIES</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Places</a></li>
+                    <li><a href="#">Culture</a></li>
+                    <li><a href="#">Food</a></li>
+                    <li><a href="#">People</a></li>
+                    <li><a href="#">Nature</a></li>
+                    <li><a href="#">Lifestyle</a></li>
+                </ul>
+            </div>
+            
+            <!-- Newsletter Col -->
+            <div class="footer-col newsletter-col">
+                <h4>NEWSLETTER</h4>
+                <p>Get the latest stories and travel inspiration from Thailand.</p>
+                <form class="newsletter-form" id="newsletterForm" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Your email address" id="newsletterEmail" required>
+                    <button type="submit" class="subscribe-btn" id="newsletterSubmitBtn">SUBSCRIBE</button>
+                </form>
+                <div class="newsletter-msg" id="newsletterMsg">Thank you for subscribing!</div>
+            </div>
+            
+        </div>
+        
+        <!-- Bottom Footer -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 ThaiLocalTale. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <span class="separator">|</span>
+                <a href="#">Terms of Use</a>
+                <span class="separator">|</span>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>
