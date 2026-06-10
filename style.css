@@ -509,42 +509,57 @@ p {
 /* 5. Hero Section */
 .hero-section {
     position: relative;
-    height: 95vh;
-    min-height: 650px;
+    min-height: 80vh;
     display: flex;
     align-items: center;
-    padding: 100px 8%;
-    background-image: url('https://images.unsplash.com/photo-1568992687947-868a62a9f521?q=80&w=1920'); /* Bangkok Canal Sunset */
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    padding: 150px 8% 80px 8%;
+    background-color: var(--color-bg-primary);
+    gap: 5%;
     overflow: hidden;
-    filter: sepia(0.04) contrast(1.02) saturate(1.05);
 }
 
-.hero-bg-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, var(--color-bg-primary) 0%, rgba(var(--color-shadow-rgb), 0.7) 45%, rgba(var(--color-shadow-rgb), 0.15) 100%);
-    z-index: 1;
-    transition: var(--transition-smooth);
+.hero-text-col {
+    flex: 1 1 45%;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 2;
+    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hero-content-container {
+.hero-image-col {
+    flex: 1 1 50%;
+    height: 500px;
     position: relative;
     z-index: 2;
-    max-width: 600px;
-    background: var(--color-glass-bg);
-    padding: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 24px;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--color-glass-border);
     box-shadow: var(--shadow-medium);
-    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid var(--color-glass-border);
+}
+
+.hero-image-col::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: 15px;
+    bottom: 15px;
+    border: 2px dashed rgba(212, 175, 55, 0.3);
+    border-radius: 30px;
+    z-index: -1;
+    pointer-events: none;
 }
 
 @keyframes fadeInUp {
@@ -559,24 +574,34 @@ p {
 }
 
 .hero-title {
-    font-size: 4.2rem;
-    font-weight: 700;
+    font-family: var(--font-handwriting);
+    font-size: 5.5rem;
     color: var(--color-text-main);
-    line-height: 1.05;
+    font-weight: 700;
+    line-height: 1.1;
     margin-bottom: 25px;
     letter-spacing: -0.01em;
 }
 
 .hero-title-accent {
-    font-family: var(--font-handwriting);
     color: var(--color-accent-gold);
-    font-size: 5rem;
-    font-weight: 700;
-    display: block;
-    margin-top: 5px;
-    transform: rotate(-2deg);
-    transform-origin: left center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 5.8rem;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title-accent::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    width: 95%;
+    height: 12px;
+    background: var(--color-accent-gold);
+    opacity: 0.25;
+    border-radius: 50%;
+    z-index: -1;
 }
 
 .hero-subtitle {
@@ -1602,11 +1627,15 @@ p {
 /* 11. Responsive Media Queries */
 @media (max-width: 1024px) {
     .hero-title {
-        font-size: 3.8rem;
+        font-size: 4.5rem;
     }
     
     .hero-title-accent {
-        font-size: 4.5rem;
+        font-size: 4.8rem;
+    }
+    
+    .hero-image-col {
+        height: 400px;
     }
     
     .stories-grid {
@@ -1658,22 +1687,29 @@ p {
     }
     
     .hero-section {
-        height: auto;
-        min-height: 80vh;
-        padding: 120px 5% 60px 5%;
-        background-position: 30% center;
+        flex-direction: column;
+        padding: 120px 24px 60px 24px;
+        text-align: center;
+        gap: 40px;
     }
     
-    .hero-bg-overlay {
-        background: linear-gradient(180deg, var(--color-bg-primary) 0%, rgba(var(--color-shadow-rgb), 0.85) 60%, rgba(var(--color-shadow-rgb), 0.4) 100%);
+    .hero-text-col {
+        max-width: 100%;
+        align-items: center;
+    }
+    
+    .hero-image-col {
+        width: 100%;
+        height: 350px;
     }
     
     .hero-title {
-        font-size: 3rem;
+        font-size: 3.8rem;
+        margin-bottom: 15px;
     }
     
     .hero-title-accent {
-        font-size: 3.5rem;
+        font-size: 4.2rem;
     }
     
     .section-container {
@@ -1733,10 +1769,6 @@ p {
     .category-svg {
         width: 32px;
         height: 32px;
-    }
-    
-    .videos-grid {
-        grid-template-columns: 100%;
     }
     
     .footer-container {
