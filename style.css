@@ -1388,6 +1388,217 @@ p {
     color: rgba(255,255,255,0.1);
 }
 
+/* 10.5. Global Podcast Player & Vertical Video Clips */
+.global-podcast-player {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-glass-border);
+    box-shadow: var(--shadow-medium);
+    border-radius: 20px;
+    padding: 20px 30px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.global-podcast-player.active-playing {
+    border-color: var(--color-accent-gold);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.15);
+}
+
+.player-details {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+    max-width: 40%;
+}
+
+.player-cover {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid var(--color-accent-gold);
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth);
+}
+
+.player-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.player-now-playing {
+    font-family: var(--font-sub);
+    font-size: 0.7rem;
+    color: var(--color-accent-gold);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+}
+
+.player-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 320px;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+.player-control-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-accent-gold);
+    color: #1C1A17;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.15rem;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.player-control-btn:hover {
+    background-color: var(--color-text-main);
+    color: var(--color-bg-primary);
+    transform: scale(1.08);
+    box-shadow: 0 4px 18px rgba(var(--color-shadow-rgb), 0.3);
+}
+
+.player-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-grow: 1;
+    max-width: 500px;
+}
+
+.player-time {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    min-width: 38px;
+}
+
+.player-progress-bar {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--color-glass-border);
+    outline: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.player-progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--color-accent-gold);
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.7);
+    transition: var(--transition-smooth);
+}
+
+.player-progress-bar::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: var(--color-text-main);
+}
+
+/* Play Overlays & Highlight for Podcast Cards */
+.card-play-icon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(28, 26, 23, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    z-index: 3;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.card-play-icon-overlay i {
+    font-size: 2.2rem;
+    color: var(--color-accent-gold);
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+    transform: scale(0.8);
+    transition: var(--transition-smooth);
+}
+
+.podcast-episode-card {
+    cursor: pointer;
+}
+
+.podcast-episode-card:hover .card-play-icon-overlay {
+    opacity: 1;
+}
+
+.podcast-episode-card:hover .card-play-icon-overlay i {
+    transform: scale(1);
+}
+
+.podcast-episode-card.active-episode {
+    border-color: var(--color-accent-gold);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+
+.podcast-episode-card.active-episode .card-play-icon-overlay {
+    opacity: 1;
+    background-color: rgba(28, 26, 23, 0.3);
+}
+
+.podcast-episode-card.active-episode .card-play-icon-overlay i {
+    transform: scale(1);
+    color: #FFF;
+}
+
+/* Vertical Clips & Shorts styles */
+.clip-thumb-container {
+    padding-top: 177.78% !important; /* Forces 9:16 Aspect Ratio */
+}
+
+.clip-card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.clip-card .video-play-overlay {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(0.9);
+}
+
+.clip-card:hover .video-play-overlay {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
 /* 11. Responsive Media Queries */
 @media (max-width: 1024px) {
     .hero-title {
@@ -1469,8 +1680,32 @@ p {
         padding: 50px 20px;
     }
     
-    .stories-grid {
-        grid-template-columns: 100%;
+    /* Horizontal Swiping Mobile Carousels */
+    .stories-grid, .videos-grid {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        scroll-behavior: smooth !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 20px !important;
+        padding: 10px 0 20px 0 !important;
+        grid-template-columns: none !important;
+    }
+    
+    .stories-grid::-webkit-scrollbar, .videos-grid::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    .story-card {
+        flex: 0 0 82% !important;
+        scroll-snap-align: start !important;
+        max-width: 82% !important;
+    }
+    
+    .clip-card {
+        flex: 0 0 62% !important;
+        scroll-snap-align: start !important;
+        max-width: 62% !important;
     }
     
     .story-card:last-child {
@@ -1517,5 +1752,36 @@ p {
     
     .footer-bottom-links {
         justify-content: center;
+    }
+    
+    /* Podcast Player Stack Mobile */
+    .global-podcast-player {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .player-details {
+        max-width: 100%;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .player-title {
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .player-controls {
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .player-progress-container {
+        width: 100%;
     }
 }

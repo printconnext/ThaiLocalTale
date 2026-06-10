@@ -192,4 +192,163 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileThemeToggle.addEventListener('click', toggleTheme);
     }
 
+    // 8. Custom HTML5 Audio Player for Podcasts
+    const globalAudio = document.getElementById('globalAudio');
+    const globalPlayer = document.getElementById('globalPlayer');
+    const playerPlayBtn = document.getElementById('playerPlayBtn');
+    const playerCover = document.getElementById('playerCover');
+    const playerTitle = document.getElementById('playerTitle');
+    const playerCurrentTime = document.getElementById('playerCurrentTime');
+    const playerDuration = document.getElementById('playerDuration');
+    const playerProgressBar = document.getElementById('playerProgressBar');
+    const episodeCards = document.querySelectorAll('.podcast-episode-card');
+
+    let currentTrackCard = null;
+
+    // Helper: format time from seconds to M:SS
+    function formatTime(seconds) {
+        if (isNaN(seconds) || seconds === Infinity) return "0:00";
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    // Function to play a specific episode card
+    function playEpisode(card) {
+        const audioSrc = card.getAttribute('data-audio');
+        const titleText = card.getAttribute('data-title') || card.querySelector('.story-card-title a').textContent;
+        const imgEl = card.querySelector('.story-img');
+        const imgSrc = imgEl ? imgEl.src : 'assets/logo.jpg';
+
+        // Update active class on cards
+        episodeCards.forEach(c => c.classList.remove('active-episode'));
+        card.classList.add('active-episode');
+        currentTrackCard = card;
+
+        // Load new source if changed
+        if (globalAudio.src !== audioSrc) {
+            globalAudio.src = audioSrc;
+            playerTitle.textContent = titleText;
+            playerCover.src = imgSrc;
+            globalAudio.load();
+        }
+
+        globalAudio.play()
+            .then(() => {
+                updatePlayState(true);
+            })
+            .catch(err => {
+                console.error("Audio playback failed: ", err);
+            });
+    }
+
+    // Update buttons & player wrapper UI based on play state
+    function updatePlayState(isPlaying) {
+        const icon = playerPlayBtn ? playerPlayBtn.querySelector('i') : null;
+        if (isPlaying) {
+            if (globalPlayer) globalPlayer.classList.add('active-playing');
+            if (icon) icon.className = 'fa fa-pause';
+            // Also update overlays on cards
+            episodeCards.forEach(c => {
+                const overlayIcon = c.querySelector('.card-play-icon-overlay i');
+                if (c === currentTrackCard && overlayIcon) {
+                    overlayIcon.className = 'fa fa-pause';
+                } else if (overlayIcon) {
+                    overlayIcon.className = 'fa fa-play';
+                }
+            });
+        } else {
+            if (globalPlayer) globalPlayer.classList.remove('active-playing');
+            if (icon) icon.className = 'fa fa-play';
+            episodeCards.forEach(c => {
+                const overlayIcon = c.querySelector('.card-play-icon-overlay i');
+                if (overlayIcon) overlayIcon.className = 'fa fa-play';
+            });
+        }
+    }
+
+    // Bind click events on cards
+    episodeCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            // Prevent navigating if user clicked the title link directly
+            if (e.target.tagName === 'A') {
+                e.preventDefault();
+            }
+            
+            if (currentTrackCard === card) {
+                // If it is the active track, toggle play/pause
+                if (globalAudio.paused) {
+                    globalAudio.play().then(() => updatePlayState(true));
+                } else {
+                    globalAudio.pause();
+                    updatePlayState(false);
+                }
+            } else {
+                playEpisode(card);
+            }
+        });
+    });
+
+    // Play/Pause button control
+    if (playerPlayBtn && globalAudio) {
+        playerPlayBtn.addEventListener('click', () => {
+            const currentSrc = globalAudio.src;
+            if (!currentSrc || currentSrc === window.location.href || currentSrc.endsWith('.html') || currentSrc === '') {
+                // No audio loaded yet, play first card
+                if (episodeCards.length > 0) {
+                    playEpisode(episodeCards[0]);
+                }
+            } else {
+                if (globalAudio.paused) {
+                    globalAudio.play().then(() => updatePlayState(true));
+                } else {
+                    globalAudio.pause();
+                    updatePlayState(false);
+                }
+            }
+        });
+    }
+
+    // Audio time update updates progress bar
+    if (globalAudio) {
+        globalAudio.addEventListener('timeupdate', () => {
+            const currentTime = globalAudio.currentTime;
+            const duration = globalAudio.duration || 0;
+            
+            if (playerCurrentTime) playerCurrentTime.textContent = formatTime(currentTime);
+            
+            if (playerProgressBar) {
+                if (duration > 0) {
+                    playerProgressBar.value = (currentTime / duration) * 100;
+                } else {
+                    playerProgressBar.value = 0;
+                }
+            }
+        });
+
+        globalAudio.addEventListener('loadedmetadata', () => {
+            if (playerDuration) playerDuration.textContent = formatTime(globalAudio.duration);
+        });
+
+        globalAudio.addEventListener('durationchange', () => {
+            if (playerDuration) playerDuration.textContent = formatTime(globalAudio.duration);
+        });
+
+        globalAudio.addEventListener('ended', () => {
+            updatePlayState(false);
+            if (playerProgressBar) playerProgressBar.value = 0;
+            if (playerCurrentTime) playerCurrentTime.textContent = "0:00";
+        });
+    }
+
+    // Drag / Seek control on progress bar
+    if (playerProgressBar && globalAudio) {
+        playerProgressBar.addEventListener('input', () => {
+            const duration = globalAudio.duration || 0;
+            if (duration > 0) {
+                globalAudio.currentTime = (playerProgressBar.value / 100) * duration;
+            }
+        });
+    }
+
 });
