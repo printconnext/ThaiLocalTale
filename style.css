@@ -231,22 +231,32 @@ p {
     align-items: center;
 }
 
+/* Brand Logo Styling */
 .brand-logo {
     display: flex;
     align-items: center;
 }
-
 .logo-img {
-    height: 55px;
+    height: 72px; /* 75% of previous size */
     width: auto;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: var(--shadow-soft);
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    transform: none;
     transition: var(--transition-smooth);
-    border: 1px solid var(--color-accent-gold);
 }
 
 .logo-img:hover {
+    transform: scale(1.05);
+}
+
+.main-header.scrolled .logo-img {
+    height: 48px; /* 75% of previous size */
+    transform: none;
+}
+
+.main-header.scrolled .logo-img:hover {
     transform: scale(1.05);
 }
 
@@ -509,18 +519,55 @@ p {
 /* 5. Hero Section */
 .hero-section {
     position: relative;
-    min-height: 80vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 150px 8% 80px 8%;
+    padding: 140px 8% 80px 8%;
     background-color: var(--color-bg-primary);
-    gap: 5%;
     overflow: hidden;
 }
 
+.hero-banner-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 65%; /* occupies 65% of screen width from the right */
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom right; /* aligns image to bottom right corner */
+    z-index: 0;
+    filter: sepia(0.04) contrast(1.02) saturate(1.05);
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        #F7F5F0 35%, 
+        rgba(247, 245, 240, 0.95) 45%, 
+        rgba(247, 245, 240, 0.5) 65%, 
+        rgba(247, 245, 240, 0) 85%
+    );
+    z-index: 1;
+    pointer-events: none;
+    transition: var(--transition-smooth);
+}
+
+[data-theme="dark"] .hero-bg-overlay {
+    background: linear-gradient(90deg, 
+        #0C0A09 35%, 
+        rgba(12, 10, 9, 0.95) 45%, 
+        rgba(12, 10, 9, 0.5) 65%, 
+        rgba(12, 10, 9, 0) 85%
+    );
+}
+
 .hero-text-col {
-    flex: 1 1 45%;
+    position: relative;
+    flex: 0 0 45%;
     max-width: 550px;
     display: flex;
     flex-direction: column;
@@ -529,37 +576,13 @@ p {
     animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hero-image-col {
-    flex: 1 1 50%;
-    height: 500px;
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hero-banner-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 24px;
-    box-shadow: var(--shadow-medium);
-    border: 1px solid var(--color-glass-border);
-}
-
-.hero-image-col::before {
-    content: '';
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    right: 15px;
-    bottom: 15px;
-    border: 2px dashed rgba(212, 175, 55, 0.3);
-    border-radius: 30px;
-    z-index: -1;
-    pointer-events: none;
+.hero-badge-logo {
+    width: 280px;
+    height: 280px;
+    object-fit: contain;
+    margin-bottom: 25px;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.12));
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes fadeInUp {
@@ -908,25 +931,63 @@ p {
 
 /* 8. About Section */
 .about-section {
-    background-color: var(--color-text-main);
-    color: var(--color-bg-primary);
+    background-color: #1a1715; /* Warm dark espresso background to create more contrast */
+    color: #F7F5F0;
     padding: 100px 0;
     overflow: hidden;
     position: relative;
+    z-index: 1;
 }
 
-/* Add palm tree vector overlay backgrounds for local vibes */
-.about-section::after {
-    content: '';
+/* Subtle dark vignette overlay on background */
+.about-bg-overlay {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 250px;
-    height: 250px;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' fill='rgba(255,255,255,0.03)' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,90 C30,90,40,70,45,50 C48,40,50,20,40,5 C35,15,25,25,10,30 C20,38,30,42,42,48 C42,48,30,65,10,75 C20,78,35,78,45,75 C45,75,40,82,10,90'/%3E%3C/svg%3E");
-    background-size: contain;
-    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(28, 26, 23, 0.1) 0%, rgba(20, 18, 17, 0.6) 100%);
+    z-index: 0;
     pointer-events: none;
+}
+
+/* Beach sunset background image layer (styled like the footer) */
+.about-palm-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.about-palm-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center; /* Align to the left to show the main beach sunset elements */
+    opacity: 0.26; /* Similar to footer-bg-img */
+    filter: grayscale(0.1) contrast(1.05) brightness(0.8) sepia(0.05);
+    transition: var(--transition-smooth);
+}
+
+.about-palm-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradient overlay blending with the dark Espresso background #1a1715 */
+    background: linear-gradient(180deg, #1a1715 0%, rgba(26, 23, 21, 0.35) 45%, rgba(26, 23, 21, 0.35) 75%, #1a1715 100%),
+                linear-gradient(90deg, rgba(26, 23, 21, 0) 50%, #1a1715 95%);
+    pointer-events: none;
+}
+
+[data-theme="dark"] .about-palm-img {
+    opacity: 0.18; /* Lower opacity in dark mode to preserve contrast */
+    filter: grayscale(0.2) contrast(1.15) brightness(0.65);
 }
 
 .about-grid {
@@ -937,6 +998,8 @@ p {
     grid-template-columns: 45% 55%;
     align-items: center;
     gap: 60px;
+    position: relative;
+    z-index: 3;
 }
 
 .about-content-col {
@@ -950,9 +1013,10 @@ p {
     font-size: 2.2rem;
     font-weight: 700;
     letter-spacing: 0.05em;
-    color: #FFF;
+    color: #F7F5F0;
     margin-bottom: 25px;
     position: relative;
+    transition: var(--transition-smooth);
 }
 
 .about-title::after {
@@ -967,9 +1031,11 @@ p {
 
 .about-desc {
     font-size: 1.1rem;
-    color: rgba(255,255,255,0.7);
+    color: #D3CDC5;
+    opacity: 0.9;
     line-height: 1.8;
     margin-bottom: 40px;
+    transition: var(--transition-smooth);
 }
 
 .about-visual-col {
@@ -978,6 +1044,7 @@ p {
     height: 480px;
 }
 
+/* Restored original container layout for the background image card */
 .visual-bg-container {
     position: absolute;
     top: 40px;
@@ -986,7 +1053,8 @@ p {
     height: 380px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    z-index: 3;
 }
 
 .visual-bg-img {
@@ -994,6 +1062,31 @@ p {
     height: 100%;
     object-fit: cover;
     filter: sepia(0.15) contrast(1.05) saturate(1);
+}
+
+/* Circular stamp placed on top of the polaroid card (z-index: 6) */
+.about-bg-stamp {
+    position: absolute;
+    bottom: -10px;
+    right: -25px;
+    width: 200px;
+    height: 200px;
+    color: rgba(212, 175, 55, 0.4); /* Slightly increased opacity for stamp-over effect */
+    transform: rotate(-10deg);
+    z-index: 6; /* Overlays on top of the polaroid card (z-index: 5) */
+    pointer-events: none;
+    transition: var(--transition-smooth);
+    mix-blend-mode: multiply; /* Blends nicely with the photo underneath in light mode */
+}
+
+.about-bg-stamp svg {
+    width: 100%;
+    height: 100%;
+}
+
+[data-theme="dark"] .about-bg-stamp {
+    color: rgba(232, 193, 77, 0.38);
+    mix-blend-mode: screen; /* Blends nicely with dark theme values */
 }
 
 /* Polaroid Card Style Pinned with Clip */
@@ -1230,6 +1323,48 @@ p {
     font-family: var(--font-ui);
     position: relative;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 1;
+}
+
+/* Footer background image layers */
+.footer-bg-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.footer-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center; /* Align to the right to see Wat Arun, Yaksa, and Tuk Tuk */
+    opacity: 0.26; /* Increased opacity from 0.12 for more visibility */
+    filter: grayscale(0.1) contrast(1.05) brightness(0.8) sepia(0.05); /* Increased brightness and contrast */
+    transition: var(--transition-smooth);
+}
+
+.footer-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #141211 0%, rgba(20, 18, 17, 0.3) 40%, #070605 100%);
+    pointer-events: none;
+}
+
+[data-theme="dark"] .footer-bg-img {
+    opacity: 0.18; /* Increased opacity from 0.08 in dark mode */
+    filter: grayscale(0.2) contrast(1.15) brightness(0.65); /* Adjusted brightness for dark theme */
+}
+
+[data-theme="dark"] .footer-bg-overlay {
+    background: linear-gradient(180deg, #070605 0%, rgba(7, 6, 5, 0.5) 40%, #070605 100%);
 }
 
 .footer-container {
@@ -1240,6 +1375,8 @@ p {
     grid-template-columns: 32% 18% 18% 32%;
     gap: 40px;
     margin-bottom: 60px;
+    position: relative;
+    z-index: 2; /* Ensure links and inputs are clickable on top of graphic */
 }
 
 .footer-col h4 {
@@ -1263,11 +1400,12 @@ p {
 }
 
 .footer-logo-img {
-    height: 70px;
+    height: 120px;
     width: auto;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid var(--color-accent-gold);
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
 }
 
 .footer-brand-info h3 {
@@ -1393,6 +1531,8 @@ p {
     align-items: center;
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.4);
+    position: relative;
+    z-index: 2;
 }
 
 .footer-bottom-links {
@@ -1674,6 +1814,19 @@ p {
     .polaroid-card {
         bottom: 0px;
         right: 30px;
+        position: absolute;
+    }
+
+    .about-bg-stamp {
+        bottom: -20px;
+        right: 10px;
+        width: 150px;
+        height: 150px;
+        z-index: 2;
+    }
+
+    .about-palm-img {
+        opacity: 0.15;
     }
 }
 
@@ -1687,20 +1840,29 @@ p {
     }
     
     .hero-section {
-        flex-direction: column;
+        flex-direction: column-reverse; /* image on top, text on bottom */
         padding: 120px 24px 60px 24px;
         text-align: center;
-        gap: 40px;
+        gap: 30px;
+    }
+    
+    .hero-banner-img {
+        position: relative;
+        width: 100%;
+        height: 280px;
+        border-radius: 20px;
+        box-shadow: var(--shadow-medium);
+        z-index: 2;
+    }
+    
+    .hero-bg-overlay {
+        display: none; /* hide transition overlay on stacked mobile view */
     }
     
     .hero-text-col {
         max-width: 100%;
         align-items: center;
-    }
-    
-    .hero-image-col {
-        width: 100%;
-        height: 350px;
+        flex: 0 0 100%;
     }
     
     .hero-title {
@@ -1774,6 +1936,10 @@ p {
     .footer-container {
         grid-template-columns: 100%;
         gap: 40px;
+    }
+
+    .footer-bg-img {
+        opacity: 0.15; /* Increased mobile opacity for better visibility while preserving readability */
     }
     
     .footer-bottom {
