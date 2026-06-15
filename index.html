@@ -122,27 +122,9 @@
                     <a href="https://youtube.com" target="_blank" class="view-all-link" id="viewAllStories">YOUTUBE CHANNEL <i class="fa fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Global Audio Player Widget -->
-                <div class="global-podcast-player" id="globalPlayer">
-                    <div class="player-details">
-                        <img src="assets/logo.jpg" alt="Episode Cover" class="player-cover" id="playerCover">
-                        <div class="player-text">
-                            <span class="player-now-playing">NOW PLAYING</span>
-                            <h4 class="player-title" id="playerTitle">Select an episode below to listen</h4>
-                        </div>
-                    </div>
-                    <div class="player-controls">
-                        <button class="player-control-btn" id="playerPlayBtn" aria-label="Play">
-                            <i class="fa fa-play"></i>
-                        </button>
-                        <div class="player-progress-container">
-                            <span class="player-time" id="playerCurrentTime">0:00</span>
-                            <input type="range" class="player-progress-bar" id="playerProgressBar" value="0" min="0" max="100">
-                            <span class="player-time" id="playerDuration">0:00</span>
-                        </div>
-                    </div>
-                    <audio id="globalAudio" src=""></audio>
-                </div>
+                <!-- ElevenLabs AudioNative Player Widget -->
+                <div id="elevenlabs-audionative-widget" data-height="90" data-width="100%" data-frameborder="no" data-scrolling="no" data-publicuserid="96c66b86353bdbb81d16a1050e67261ccbd861b67250af2f48b11b098da8cfb7" data-playerurl="https://elevenlabs.io/player/index.html" data-projectid="rzpav1pySkKCQtBZNbEJ" style="margin-bottom: 40px;">Loading the <a href="https://elevenlabs.io/text-to-speech" target="_blank" rel="noopener">Elevenlabs Text to Speech</a> AudioNative Player...</div>
+                <script src="https://elevenlabs.io/player/audioNativeHelper.js" type="text/javascript"></script>
                 
                 <!-- Stories Carousel/Grid -->
                 <div class="stories-slider-container">

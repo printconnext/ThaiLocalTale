@@ -194,6 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 8. Custom HTML5 Audio Player for Podcasts
     const globalAudio = document.getElementById('globalAudio');
+    if (!globalAudio) return;
+
     const globalPlayer = document.getElementById('globalPlayer');
     const playerPlayBtn = document.getElementById('playerPlayBtn');
     const playerCover = document.getElementById('playerCover');
